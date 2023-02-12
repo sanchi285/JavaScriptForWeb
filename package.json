@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sanchi285/JavaScriptForWeb/issues"
   },
-  "homepage": "https://github.com/sanchi285/JavaScriptForWeb#readme"
+  "homepage": "https://github.com/sanchi285/JavaScriptForWeb#readme",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  }
 }

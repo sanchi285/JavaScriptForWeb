@@ -1,5 +1,6 @@
 const { normalizeURL, getUrlFromHTML } = require('./crawl.js')
 const {test, expect} = require('@jest/globals')
+const {sortPages} = require('./report.js')
 
 test('normalizeURL', ()=>{
     const input = 'https://blogboot.dev/path'
@@ -93,4 +94,38 @@ test('getrelativelUrlFromHtml invalid', ()=>{
     //const actual = normalizeURL(input)
     const expected = []
     return expect(actualLinks).toEqual(expected)
+})
+
+test('sortPage', ()=>{
+    const input = {
+        'https://wagslane.dev/path' : 1,
+        'https://wagslane.dev' :3 
+    }
+    const actual = sortPages(input)
+    const expected = [
+        ['https://wagslane.dev' ,3 ],
+        ['https://wagslane.dev/path' , 1]
+    ]
+    
+    return expect(actual).toEqual(expected)
+})
+
+
+test('sortPage 4', ()=>{
+    const input = {
+        'abc' : 1,
+        'def' :3,
+        'jkl' :9,
+        'nop' : 5
+    }
+    const actual = sortPages(input)
+    const expected = [
+        ['jkl' ,9],
+        ['nop', 5],
+        ['def' ,3 ],
+        ['abc' , 1]
+
+    ]
+    
+    return expect(actual).toEqual(expected)
 })

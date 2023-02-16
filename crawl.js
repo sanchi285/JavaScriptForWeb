@@ -4,30 +4,30 @@ const {JSDOM} = require('jsdom')
 async function crawlPage(baseURL,currentURL,pages){
 
     const baseURLObj = new URL(baseURL)
-    const currentUrlObj = new URL(currentURL)
+    const currentURLObj = new URL(currentURL)
 
-    if(baseURLObj.hostname!=currentURL.hostname){
-        console.log(`${baseURL.hostname} " " ${currentURL.hostname}`);
+    if(baseURLObj.hostname !== currentURLObj.hostname){
+        console.log(`${baseURLObj.hostname} " " ${currentURLObj.hostname}`);
         return pages;
     }
     const normalizedCurrentURL = normalizeURL(currentURL)
     if(pages[normalizedCurrentURL] > 0){
         pages[normalizedCurrentURL]++;
-        return pages;
+        return pages
     }
     pages[normalizedCurrentURL] = 1
 
 
     try{
-    const resp = await fetch(currentUrl)
+    const resp = await fetch(currentURL)
         if(resp.status>399){
-            console.log(`error in fetch with status code ${resp.status} on Page: ${currentUrl}`)
-            return
+            console.log(`error in fetch with status code ${resp.status} on Page: ${currentURL}`)
+            return pages
         }
         const contentType = resp.headers.get("content-type")
         if(!contentType.includes('text/html')){
-            console.log(`non html response ${resp.status} on Page: ${currentUrl}`)
-            return
+            console.log(`non html response ${resp.status} on Page: ${currentURL}`)
+            return pages
         }
 
     //console.log(await resp.text())

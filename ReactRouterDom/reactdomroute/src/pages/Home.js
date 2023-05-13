@@ -1,7 +1,14 @@
 import { ChangeProfile } from "../components/ChangeProfile";
-export const Home = (props)=>{
+import { AppContext } from "../App";
+import { useContext } from "react";
+
+export const Home = ()=>{
+
+    const {username} = useContext(AppContext)
+    const {setUsername} = useContext(AppContext)
+
     return (<div>
-        <h1>THIS IS THE HOME PAGE and the user is {props.username} </h1>
-        <ChangeProfile setUsername={props.setUsername}/>
+        <h1>THIS IS THE HOME PAGE and the user is {username} </h1>
+        <ChangeProfile/>
     </div>);
 };

@@ -1,3 +1,7 @@
-export const Profile = ()=>{
-    return <h1>THIS IS THE Profile PAGE</h1>;
+import { ChangeProfile } from "../components/ChangeProfile";
+
+export const Profile = (props)=>{
+    return (<div>
+        <h1>THIS IS THE Profile PAGE of {props.username}</h1>
+    </div>);
 };

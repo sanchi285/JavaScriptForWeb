@@ -6,16 +6,16 @@ export const Form = ()=>{
    
     const schema  = yup.object().shape(
       {
-        fullName: yup.string().required(),
-        email: yup.string().email().required(),
+        fullName: yup.string().required("Your fullname is required"),
+        email: yup.string().email().required("empty email not allowed"),
         age: yup.number().positive().integer().min(18).required(),
         password: yup.string().min(4).max(20).required(),
-        confPass: yup.string().oneOf([yup.ref("password"),null]).required(),
+        confPass: yup.string().oneOf([yup.ref("password"),null]).required("Didn't match with previosone"),
         
       }
     );
 
-    const {register, handleSubmit} = useForm(
+    const {register, handleSubmit, formState: {errors}} = useForm(
       {
         resolver: yupResolver(schema)
       }
@@ -32,18 +32,23 @@ export const Form = ()=>{
           <form onSubmit = {handleSubmit(onSubmit)}>
           <div>
           <input type="text" placeholder="Full Name" {...register("fullName")}/>
+          <p>{errors.fullName?.message}</p>
         </div>
         <div>
           <input type="text" placeholder="Email.." {...register("email")}/>
+          <p>{errors.email?.message}</p>
         </div>
         <div>
           <input type="text" placeholder="Age.." {...register("age")}/>
+          <p>{errors.age?.message}</p>
         </div>
         <div>
           <input type="text" placeholder="Password..." {...register("password")}/>
+          <p>{errors.password?.message}</p>
         </div>
         <div>
           <input type="text" placeholder="Confirm Password...." {...register("confPass")}/>
+          <p>{errors.confPass?.message}</p>
         </div>
         <button type="submit">Submit</button>
           </form>

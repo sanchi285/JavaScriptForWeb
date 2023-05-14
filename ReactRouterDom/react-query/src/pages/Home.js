@@ -3,6 +3,7 @@ import { AppContext } from "../App";
 import { useContext } from "react";
 import {useQuery} from "@tanstack/react-query"
 import  Axios  from "axios";
+import { Form } from "../components/Form";
 
 export const Home = ()=>{
 
@@ -29,5 +30,7 @@ export const Home = ()=>{
         <button onClick={refetch}>Upadate DATA</button>
         <br/>
         <ChangeProfile/>
+        <br/>
+        <Form/>
     </div>);
 };
